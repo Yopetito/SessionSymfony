@@ -24,25 +24,25 @@ final class StagiaireController extends AbstractController
     #[Route('/stagiaire/newstagiaire', name: 'app_newstagiaire')]
     public function newStagiaire(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {   
-        if(!$employe) {
-            $employe = new Employe();
+        if(!$stagiaire) {
+            $stagiaire = new Stagiaire();
         }
         
-        $form = $this->createForm(EmployeType::class, $employe);
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $employe = $form->getData();
+            $stagiaire = $form->getData();
 
-            $entityManager->persist($employe);
+            $entityManager->persist($stagiaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_employe');
+            return $this->redirectToRoute('app_stagiaire');
         }
         
-        return $this->render('employe/new.html.twig', [
-            'formAddEmploye' => $form,
+        return $this->render('stagiaire/new.html.twig', [
+            'formAddStagiaire' => $form,
         ]);
     }
 }
