@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<h1>STAGIAIRES</h1>
+
+<a href="">Ajouter un stagiaire</a>
+{% for stagiaire in stagiaires %}
+    {{ stagiaire }}<br>
+{% endfor %}
+
+{% endblock %}
