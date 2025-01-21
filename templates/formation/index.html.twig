@@ -6,7 +6,10 @@
 <h1>FORMATIONS</h1>
 
 {% for formation in formations %}
-    {{ formation }} <br>
+    <a href="{{ path('show_sessions', {'id':formation.id}) }}">
+        {{ formation }} 
+    </a>
+    <br>
 {% endfor %}
 
 {% endblock %}

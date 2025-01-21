@@ -4,4 +4,12 @@
 
 {% block body %}
 <h1>SESSIONS</h1>
+
+{% for session in sessions %}
+    <h3>{{ session.nom }}</h3><br>
+    Date de debut: {{session.dateDebutFormat}}<br>
+    Date de fin: {{session.dateFinFormat}}<br>
+    Places disponibles: {{ session.nbPlace }}<br>
+
+{% endfor %}
 {% endblock %}

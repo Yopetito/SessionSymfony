@@ -187,4 +187,14 @@ class Session
 
         return $this;
     }
+
+    public function getDateDebutFormat()
+    {
+        return $this->dateDebut->format("d/m/Y");
+    }
+
+    public function getDateFinFormat()
+    {
+        return $this->dateFin->format("d/m/Y");
+    }
 }
