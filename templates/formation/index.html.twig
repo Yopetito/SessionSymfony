@@ -4,4 +4,9 @@
 
 {% block body %}
 <h1>FORMATIONS</h1>
+
+{% for formation in formations %}
+    {{ formation }} <br>
+{% endfor %}
+
 {% endblock %}

@@ -165,4 +165,9 @@ class Stagiaire
 
         return $this;
     }
+
+    public function getDateFormat()
+    {
+        return $this->dateNaissance->format("d/m/Y");
+    }
 }

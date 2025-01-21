@@ -4,4 +4,13 @@
 
 {% block body %}
 <h1>CATEGORIES</h1>
+<h2>Choisir une categorie pour acceder aux differents modules</h2>
+
+{% for categorie in categories %}
+    <a href="{{ path('app_modules', {'id':categorie.id}) }}">
+        {{ categorie }}
+    </a>
+    <br>
+{% endfor %}
+
 {% endblock %}

@@ -5,11 +5,13 @@
 {% block body %}
 <h1>STAGIAIRES</h1>
 
-<a href="app_newstagiaire">Ajouter un stagiaire</a>
+<a href=" {{ path('app_addstagiaire') }}">Ajouter un stagiaire</a><br>
+
 {% for stagiaire in stagiaires %}
-    {{ stagiaire }}<br>
+    <a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">
+         {{ stagiaire }}
+    </a>
+    <br>
 {% endfor %}
-
-
 
 {% endblock %}
