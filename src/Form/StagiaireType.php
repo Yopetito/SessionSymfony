@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class StagiaireType extends AbstractType
 {
@@ -26,6 +27,7 @@ class StagiaireType extends AbstractType
             ->add('ville', TextType::class)
             ->add('email', EmailType::class)
             ->add('telephone', TextType::class)
+            ->add('valider', SubmitType::class)
             // ->add('sessions', EntityType::class, [
             //     'class' => Session::class,
             //     'choice_label' => 'id',

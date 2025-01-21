@@ -23,19 +23,6 @@ final class StagiaireController extends AbstractController
         ]);
     }
 
-
-
-    #[Route('/stagiaire/{id}', name: 'app_detailstagiaire')]
-    public function show(Stagiaire $stagiaire): Response
-    {
-            return $this->render('stagiaire/detailstagiaire.html.twig', [
-            'stagiaire' => $stagiaire
-        ]);
-    }
-
-
-
-
     #[Route('/stagiaire/add', name: 'app_addstagiaire')]
     public function addStagiaire(Request $request, EntityManagerInterface $entityManager): Response
     {   
@@ -57,4 +44,17 @@ final class StagiaireController extends AbstractController
             'formAddStagiaire' => $form,
         ]);
     }
+
+
+    #[Route('/stagiaire/{id}', name: 'app_detailstagiaire')]
+    public function show(Stagiaire $stagiaire): Response
+    {
+            return $this->render('stagiaire/detailstagiaire.html.twig', [
+            'stagiaire' => $stagiaire
+        ]);
+    }
+
+
+
+
 }
