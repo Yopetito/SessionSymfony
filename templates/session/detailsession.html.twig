@@ -1,8 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SessionController!{% endblock %}
+{% block title %}Détails de la Session{% endblock %}
 
 {% block body %}
-<h1>information session</h1>
+<h1>Détails de la Session</h1>
+
+<h2>Session : {{ session.nom }}</h2>
+
+<h3>Stagiaires inscrits :</h3>
+<ul>
+    {% for stagiaire in session.stagiaires %}
+        {{ stagiaire.nom }}<br>
+    {% endfor %}
+</ul>
+
 
 {% endblock %}

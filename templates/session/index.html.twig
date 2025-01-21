@@ -6,7 +6,7 @@
 <h1>SESSIONS</h1>
 
 {% for session in sessions %}
-    <a href="#"><h3>{{ session.nom }}</h3></a><br>
+    <a href="{{path('detail_session', {'id':session.id})}}"><h3>{{ session.nom }}</h3></a><br>
     Date de debut: {{session.dateDebutFormat}}<br>
     Date de fin: {{session.dateFinFormat}}<br>
     Places disponibles: {{ session.nbPlace }}<br>

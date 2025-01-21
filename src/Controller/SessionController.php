@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class SessionController extends AbstractController
 {
-    #[Route('/session/{id}', name: 'show_sessions')]
+    #[Route('/formation/{id}/sessions', name: 'show_sessions')]
     public function index(int $id, SessionRepository $sessionRepository): Response
     {
         $sessions = $sessionRepository->findBy(['formation' => $id]);
@@ -19,13 +19,15 @@ final class SessionController extends AbstractController
         ]);
     } 
 
-    #[Route('/session/{id}', name: 'detail_session')]
-    public function detailSession(StagiaireRepository $stagiaireRepo, SessionRepository $sessionRepo, int $id): Response
+    #[Route('/session/{id}/details', name: 'detail_session')]
+    public function detailSession(SessionRepository $sessionRepo, int $id): Response
     {
         
-        
+        $session = $sessionRepo->find($id);
+        $stagiaires = $session->getStagiaires();
         return $this->render('session/detailsession.html.twig', [
-            '' => ''
+            'session' => $session,
+            'stagiaires' => $stagiaires
         ]);
     }
 }
