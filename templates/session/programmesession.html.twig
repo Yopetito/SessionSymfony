@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Programme de la Session{% endblock %}
+
+{% block body %}
+<h1>Programme de la Session</h1>
+
+<h2>Session : {{ session.nom }}</h2>
+
+<h3>Modules :</h3>
+{% for programme in session.programmes %}
+    {{ programme.module }} - Durée: {{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}<br>
+{% endfor %}
+
+
+
+{% endblock %}
