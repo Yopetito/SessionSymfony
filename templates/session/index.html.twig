@@ -7,19 +7,10 @@
 <a href="{{ path('add_session') }}">Ajouter une session</a>
 
 {% for session in sessions %}
-    <a href="{{path('detail_session', {'id':session.id})}}"><h3>{{ session.nom }}</h3></a><br>     
-   
-    Date de debut: {{session.dateDebutFormat}}<br>
-    Date de fin: {{session.dateFinFormat}}<br>
-    Places disponibles: {{ session.nbPlace }}<br>
-    Places Restantes: {{ session.nbPlace - session.stagiaires|length }}<br>
-    Formateur: {{ session.formateur }}<br>   
-    <a href="{{ path('programme_session', {'id':session.id}) }}">Programme</a>
-
+    <a href="{{path('detail_session', {'id':session.id})}}"><h2>{{ session.nom }}</h2></a><br>     
 {% endfor %}
 <br>
-<br>
-<br>
+
 Ajouter un stagiaire a une session ?
 {{ form(formAddStagiaireSession) }}
 {% endblock %}

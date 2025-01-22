@@ -16,7 +16,56 @@ class SessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Session::class);
     }
 
+    public function findNonInscrits($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+
+        $qb->select('s')
+            ->from('App\Entity\Stagiaire', 's')
+            ->leftjoin('s.sessions', 'se')
+            ->where('se.id = :id');
+
+        $sub = $em->createQueryBuilder();
+        $sub->select('st')
+            ->from('App\Entity\Stagiaire', 'st')
+            ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('st.nom');
+
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
+    public function findNonProgramme($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+
+        $qb->select('m')
+            ->from('App\Entity\Module', 'm')
+            ->leftjoin('m.programmes', 'pr')
+            ->where('pr.session = :id');
+
+        $sub = $em->createQueryBuilder();
+        $sub->select('mo')
+            ->from('App\Entity\Module', 'mo')
+            ->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('mo.nom');
+            $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
+
+
+
     //    /**
+
     //     * @return Session[] Returns an array of Session objects
     //     */
     //    public function findByExampleField($value): array

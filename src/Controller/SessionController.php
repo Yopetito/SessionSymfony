@@ -47,22 +47,18 @@ final class SessionController extends AbstractController
     } 
 
     #[Route('/session/{id}/details', name: 'detail_session')]
-    public function detailSession(Session $session): Response
+    public function detailSession(Session $session, SessionRepository $sessionRepository): Response
     {
+        $nonInscrits = $sessionRepository->findNonInscrits($session->getId());
+        $nonProgrammes = $sessionRepository->findNonProgramme($session->getId());
+        
         return $this->render('session/detailsession.html.twig', [
-            'session' => $session
+            'session' => $session,
+            'nonInscrits' => $nonInscrits,
+            'nonProgrammes' => $nonProgrammes
         ]);
     }
     
-    
-    #[Route('/session/{id}/programme', name: 'programme_session')]
-    public function programmeSession(Session $session): Response
-    {
-        return $this->render('session/programmesession.html.twig', [
-            'session' => $session
-        ]);
-    }
-
     #[Route('/session/add', name: 'add_session')]
     public function addSession(Session $session = null, SessionRepository $sessionRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
