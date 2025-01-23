@@ -15,14 +15,19 @@
     </head>
     <body>
         <nav>
-            <a href=" {{ path('app_home') }} ">Dashboard</a>
-            <a href=" {{ path('app_formation') }} ">Formations</a>
-            <a href=" {{ path('app_formateur') }} ">Formateurs</a>
-            <a href=" {{ path('app_categorie') }} ">Modules</a>
-            <a href=" {{ path('app_stagiaire') }} ">Stagiaires</a>
-            <a href=" {{ path('app_login') }} ">Logout</a>
+            <a href=" {{ path('app_home') }} "><i class="fa-solid fa-chart-column"></i>Dashboard</a>
+            <a href=" {{ path('app_formation') }} "><i class="fa-solid fa-list-ul"></i>Formations</a>
+            <a href=" {{ path('app_formateur') }} "><i class="fa-solid fa-chalkboard-user"></i>Formateurs</a>
+            <a href=" {{ path('app_categorie') }} "><i class="fa-solid fa-book"></i>Modules</a>
+            <a href=" {{ path('app_stagiaire') }} "><i class="fa-solid fa-users"></i>Stagiaires</a>
+            <a href=" {{ path('app_login') }} "><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
         </nav>
+
         {% block body %}
+        
         {% endblock %}
     </body>
+    <footer>
+        <p>TEXTE DES CONDITIONS LEGALES</p>
+    </footer>
 </html>

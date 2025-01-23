@@ -1,0 +1,72 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cutive&family=Playwrite+AU+SA:wght@100..400&display=swap');
+
+:root {
+    --outsider: #07745E;
+    --insider: #0FB392;
+    --tester: red;
+    --cleargreen: #d7f5ef;
+    --cutive: Cutive;
+}
+
+* {
+    margin: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(135deg, rgba(2,54,43,1) 0%, rgba(0,255,204,1) 100%);
+}
+
+nav {
+    background-color: var(--cleargreen);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    margin-bottom: 25px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+nav a {
+    padding: 10px;
+    border-radius: 40px;
+    background-color: var(--insider);
+    margin: 10px 0 10px 0;
+    box-shadow: 5px 5px 5px var(--outsider);
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-family: var(--cutive);
+    transition: all 0.5;
+}
+
+nav a:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px 5px var(--outsider);
+}
+
+nav i {
+    margin-right: 7px;
+}
+
+/* .carre {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 20%;
+    left: 33%;
+    background-color: white;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 1);
+    z-index: 999;
+} */
