@@ -15,6 +15,7 @@ Date de debut: {{session.dateDebutFormat}}<br>
 Date de fin: {{session.dateFinFormat}}<br>
 Places totales: {{ session.nbPlace }}<br>
 Places Restantes: {{ placeRestantes }}<br>
+<br>
 
 <h2>Stagiaires inscrits: </h2>
 {% if placeRestantes > 0 %}
@@ -22,8 +23,10 @@ Places Restantes: {{ placeRestantes }}<br>
         {{ stagiaire.nom }} {{stagiaire.prenom}}
         <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
             <i class="fa-solid fa-user-minus"></i>
-        </a> <br>
+        </a>
+        <br>
     {% endfor %}
+    <br>
     <h3>Non inscrits:</h3>
     
     {% for nonInscrit in nonInscrits %}
@@ -32,6 +35,7 @@ Places Restantes: {{ placeRestantes }}<br>
             <i class="fa-solid fa-user-plus"></i>
         </a><br>
     {% endfor %}
+
 {% else %}    
     <h3>Session Pleine: Veuillez supprimer un stagiaire pour pouvoir en ajouter.</h3><br>
     {% for stagiaire in session.stagiaires %}
@@ -39,16 +43,18 @@ Places Restantes: {{ placeRestantes }}<br>
     <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
         <i class="fa-solid fa-user-minus"></i>
     </a> <br>
+    <br>
     {% endfor %}
     <h3>Non inscrits:</h3>
     
     {% for nonInscrit in nonInscrits %}
         {{ nonInscrit.nom }} {{ nonInscrit.prenom}} 
+        <br>
     {% endfor %}
 {% endif %}
 
 
-
+<br>
 <h3>Modules Programmés:</h3>
 {% for programme in session.programmes %}
     {{ programme.module }}- Categorie: {{programme.module.categorie}} - Durée: {{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}
@@ -56,7 +62,7 @@ Places Restantes: {{ placeRestantes }}<br>
         <i class="fa-solid fa-file-circle-minus"></i>
     </a><br>
 {% endfor %}
-
+<br>
 <h3>Modules non programmés:</h3>
 {% for module in nonProgrammes %}
     <div class="modules-no-prog">
