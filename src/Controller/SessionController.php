@@ -41,26 +41,42 @@ final class SessionController extends AbstractController
         $nonInscrits = $sessionRepository->findNonInscrits($session->getId());
         $nonProgrammes = $sessionRepository->findNonProgramme($session->getId());
         
+        $nbPlace = $session->getNbPlace();
+        $stagiairesInscrits = $session->getStagiaires();
+        $nbInscrits = count($stagiairesInscrits);
+        $placesRestantes = $nbPlace - $nbInscrits;
+
+        
         return $this->render('session/detailsession.html.twig', [
             'session' => $session,
             'nonInscrits' => $nonInscrits,
-            'nonProgrammes' => $nonProgrammes
+            'nonProgrammes' => $nonProgrammes,
+            'placeRestantes' => $placesRestantes,
         ]);
     }
 
     //==================Ajout et supression d'un stagiaire dans une session
 
     #[Route('/session/{id}/details/add/{stagiaireId}', name: 'addStagToSession')]
-    public function AddStagToSession(int $id, int $stagiaireId, SessionRepository $sessionRepo, StagiaireRepository $stagiaireRepo, EntityManagerInterface $em)
+    public function AddStagToSession(Session $session, int $stagiaireId, SessionRepository $sessionRepo, StagiaireRepository $stagiaireRepo, EntityManagerInterface $em)
     {
+        $nbPlace = $session->getNbPlace();
+        $stagiairesInscrits = $session->getStagiaires();
+        $nbInscrits = count($stagiairesInscrits);
+        $placesRestantes = $nbPlace - $nbInscrits;
+        
+        if($placesRestantes <= 0){
+            $this->addFlash('error', 'Il n’y a plus de places disponibles');
+            return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+        }
+
         $stagiaire = $stagiaireRepo->find($stagiaireId);
-        $session = $sessionRepo->find($id);
         
         $session->addStagiaire($stagiaire);
         $em->persist($session);
         $em->flush();
 
-        return $this->redirectToRoute('detail_session', ['id' => $id]);
+        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
     }
     
     #[Route('/session/{id}/details/remove/{stagiaireId}', name: 'removeStagToSession')]

@@ -3,29 +3,48 @@
 {% block title %}Détails de la Session{% endblock %}
 
 {% block body %}
-
+{% for message in app.flashes('error') %}
+    <div class="alert">
+        {{message}}
+    </div>
+{% endfor %}
 <h2>{{session.nom}} - Formateur: {{ session.formateur }}<br>   </h2>
 Date de debut: {{session.dateDebutFormat}}<br>
 Date de fin: {{session.dateFinFormat}}<br>
 Places totales: {{ session.nbPlace }}<br>
-Places Restantes: {{ session.nbPlace - session.stagiaires|length }}<br>
+Places Restantes: {{ placeRestantes }}<br>
 
 <h2>Stagiaires inscrits: </h2>
-{% for stagiaire in session.stagiaires %}
+{% if placeRestantes > 0 %}
+    {% for stagiaire in session.stagiaires %}
+        {{ stagiaire.nom }} {{stagiaire.prenom}}
+        <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
+            <i class="fa-solid fa-user-minus"></i>
+        </a> <br>
+    {% endfor %}
+    <h3>Non inscrits:</h3>
+    
+    {% for nonInscrit in nonInscrits %}
+        {{ nonInscrit.nom }} {{ nonInscrit.prenom}} 
+        <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':nonInscrit.id}) }}">
+            <i class="fa-solid fa-user-plus"></i>
+        </a><br>
+    {% endfor %}
+{% else %}    
+    <h3>Session Pleine: Veuillez supprimer un stagiaire pour pouvoir en ajouter.</h3><br>
+    {% for stagiaire in session.stagiaires %}
     {{ stagiaire.nom }} {{stagiaire.prenom}}
     <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
         <i class="fa-solid fa-user-minus"></i>
     </a> <br>
-{% endfor %}
+    {% endfor %}
+    <h3>Non inscrits:</h3>
+    
+    {% for nonInscrit in nonInscrits %}
+        {{ nonInscrit.nom }} {{ nonInscrit.prenom}} 
+    {% endfor %}
+{% endif %}
 
-<h3>Non inscrits:</h3>
-
-{% for stagiaire in nonInscrits %}
-    {{ stagiaire.nom }} {{ stagiaire.prenom}} 
-    <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
-        <i class="fa-solid fa-user-plus"></i>
-    </a><br>
-{% endfor %}
 
 
 <h3>Modules Programmés:</h3>
