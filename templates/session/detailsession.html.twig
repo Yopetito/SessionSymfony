@@ -12,22 +12,40 @@ Places Restantes: {{ session.nbPlace - session.stagiaires|length }}<br>
 
 <h2>Stagiaires inscrits: </h2>
 {% for stagiaire in session.stagiaires %}
-    {{ stagiaire.nom }} {{stagiaire.prenom}}<br>
+    {{ stagiaire.nom }} {{stagiaire.prenom}}
+    <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
+        <i class="fa-solid fa-user-minus"></i>
+    </a> <br>
 {% endfor %}
 
 <h3>Non inscrits:</h3>
+
 {% for stagiaire in nonInscrits %}
-    {{ stagiaire.nom }} {{ stagiaire.prenom}}<br>
+    {{ stagiaire.nom }} {{ stagiaire.prenom}} 
+    <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
+        <i class="fa-solid fa-user-plus"></i>
+    </a><br>
 {% endfor %}
+
 
 <h3>Modules Programmés:</h3>
 {% for programme in session.programmes %}
-    {{ programme.module }}- Categorie: {{programme.module.categorie}} - Durée: {{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}<br>
+    {{ programme.module }}- Categorie: {{programme.module.categorie}} - Durée: {{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}
+    <a href=" {{ path('removeModuleToSession', {'id':session.id, 'programmeId':programme.id}) }}">
+        <i class="fa-solid fa-file-circle-minus"></i>
+    </a><br>
 {% endfor %}
 
 <h3>Modules non programmés:</h3>
 {% for module in nonProgrammes %}
-    {{ module.nom }}<br>
+    {{ module.nom }}
+    <form method="POST" action="{{ path('addModuleToSession', {'id': session.id, 'moduleId': module.id}) }}">
+        <input type="number" name="nbJour" placeholder="jours" required>
+        <button type="submit">
+            <i class="fa-solid fa-file-circle-plus"></i>
+        </button>
+    </form>
     
 {% endfor %}
+
 {% endblock %}

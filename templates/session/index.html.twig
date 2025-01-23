@@ -4,13 +4,11 @@
 
 {% block body %}
 <h1>SESSIONS</h1>
-<a href="{{ path('add_session') }}">Ajouter une session</a>
+<a href="{{ path('add_session') }}"><h2>Ajouter une session</h2></a>
 
 {% for session in sessions %}
-    <a href="{{path('detail_session', {'id':session.id})}}"><h2>{{ session.nom }}</h2></a><br>     
+    <a href="{{path('detail_session', {'id':session.id})}}"><h3>{{ session.nom }}</h3></a><br>     
 {% endfor %}
 <br>
 
-Ajouter un stagiaire a une session ?
-{{ form(formAddStagiaireSession) }}
 {% endblock %}

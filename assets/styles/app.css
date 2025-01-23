@@ -1,3 +1,19 @@
 body {
     background-color: rgb(223, 223, 223);
 }
+
+.fa-user-minus {
+    color: red;
+}
+
+.fa-user-plus {
+    color: green;
+}
+
+.fa-file-circle-minus {
+    color:red;
+}
+
+.fa-file-circle-plus {
+    color:green;
+}
