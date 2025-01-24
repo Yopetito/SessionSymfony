@@ -61,7 +61,38 @@ class SessionRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function getFinishedSessions()
+    {
+        return $this->createQueryBuilder('s')
+               ->where('s.dateFin < CURRENT_DATE()')
+               ->orderBy('s.id', 'ASC')
+               ->setMaxResults(10)
+               ->getQuery()
+               ->getResult()
+           ;
+    }
+  
+    public function getOngoingSessions()
+    {
+        return $this->createQueryBuilder('s')
+               ->where('s.dateDebut < CURRENT_DATE() AND s.dateFin > CURRENT_DATE()')
+               ->orderBy('s.id', 'ASC')
+               ->setMaxResults(10)
+               ->getQuery()
+               ->getResult()
+           ;
+    }
 
+    public function getIncomingSessions()
+    {
+        return $this->createQueryBuilder('s')
+               ->where('s.dateDebut > CURRENT_DATE()')
+               ->orderBy('s.id', 'ASC')
+               ->setMaxResults(10)
+               ->getQuery()
+               ->getResult()
+           ;
+    }
 
 
     //    /**

@@ -13,7 +13,7 @@ class Programme
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $nbJour = null;
 
     #[ORM\ManyToOne(inversedBy: 'programmes')]

@@ -144,4 +144,5 @@ final class SessionController extends AbstractController
             'formAddSession' => $form
         ]);
     }
+
 }
