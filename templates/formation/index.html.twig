@@ -3,13 +3,21 @@
 {% block title %}Hello FormationController!{% endblock %}
 
 {% block body %}
-<h1>FORMATIONS</h1>
-
-{% for formation in formations %}
-    <a href="{{ path('show_sessions', {'id':formation.id}) }}">
-        {{ formation }} 
-    </a>
-    <br>
-{% endfor %}
+<div class="formation-container">
+    <div class="formation-information">
+        <div class="formation-title">
+            <p class="title">FORMATIONS</p>
+        </div>
+        <div class="formations">
+            {% for formation in formations %}
+                <div class="formation-name">
+                    <a href="{{ path('show_sessions', {'id':formation.id}) }}">
+                        {{ formation }} 
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}
