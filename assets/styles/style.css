@@ -6,6 +6,7 @@
     --insider: #0FB392;
     --tester: red;
     --cleargreen: #d7f5ef;
+    --hoverbutton:  #00ecbd;
     --cutive: Cutive;
     --buttonsize: 16px;
     --titlesize: 20px;
@@ -46,7 +47,7 @@ footer {
 nav a {
     padding: 10px;
     border-radius: 40px;
-    background-color: var(--insider);
+    background-color: var(--hoverbutton);
     margin: 10px 0 10px 0;
     box-shadow: 5px 5px 5px var(--outsider);
     text-decoration: none;
@@ -58,6 +59,7 @@ nav a {
 
 nav a:hover{
     transform: scale(1.1);
+    background-color: var(--insider);
     box-shadow: 0px 0px 10px 5px var(--outsider);
 }
 
@@ -85,16 +87,7 @@ nav i {
 .modules-no-prog {
     display: flex;
 }
-/* .carre {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    top: 20%;
-    left: 33%;
-    background-color: white;
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 1);
-    z-index: 999;
-} */
+
 
 /* ================DETAILS SESSIONS==================== */
 
@@ -193,8 +186,14 @@ nav i {
 }
 
 .formation-title {
-    background-color: var(--insider);
+    background-color: white;
     padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.formation-title p {
+    
 }
 
 .formation-name {
@@ -210,4 +209,54 @@ nav i {
 
 .formation-name a:hover {
     text-shadow: var(--shadow);
+}
+
+/* ------------------------------------------- */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 500px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(243, 242, 242);
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+    margin-top: 10%;
+}
+
+.container label {
+    padding: 15px 0 5px 0;
+}
+
+.container input {
+    border: #07745E 1px solid;
+}
+
+.container button {
+    margin-top: 50px;
+    border-radius: 8px;
+    background-color: var(--hoverbutton);
+    padding: 10px;
+    font-size: var(--titlesize);
+}
+
+.container button:hover {
+    transform: scale(1.1);
+    background-color: var(--insider);
+}
+
+.hardgreen {
+    color: var(--outsider);
+}
+
+.lightgreen {
+    color: var(--hoverbutton)
 }
