@@ -3,16 +3,16 @@
 {% block title %}Détails de la Session{% endblock %}
 
 {% block body %}
-{# {% for message in app.flashes('error') %}
-    <div class="alert">
-        {{message}}
-    </div>
-{% endfor %} #}
+
 <a href="{{ path('show_sessions', {'id':session.formation.id}) }}">GO BACK</a>
-<Div class="wrapper">
+<div class="wrapper">
     <div class="left-container">
+        
+        {#  Informations de la session #}
         <div class="session-item">
-            <p class="title">{{session.nom}} - Formateur: {{ session.formateur }}<br></p>
+            <div class="box-title">
+                <p class="title">{{session.nom}} - Formateur: {{ session.formateur }}<br></p>
+            </div>
             <div class="info">
                 <div class="leftinfo">
                     Date de debut: {{session.dateDebutFormat}}<br>
@@ -25,6 +25,8 @@
             </div>
         </div>
 
+        {# Stagiaires inscrits dans une session #}
+        {# Si il y a des places disponibles #}
         {% if placeRestantes > 0 %}
         <div class="stagiaire-inscrit">
             <div class="box-title">
@@ -32,21 +34,22 @@
             </div>
             {% for stagiaire in session.stagiaires %}
                 <div class="stagiaire">
-                    {{ stagiaire.nom }} {{stagiaire.prenom}}
+                    <p>{{ stagiaire.nom }} {{stagiaire.prenom}}
                     <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
                         <i class="fa-solid fa-user-minus"></i>
-                    </a>
+                    </a></p>
                 </div>
             {% endfor %}
         </div>
 
+        {# Stagiaires non inscrit dans une session #}
         <div class="stagiaire-noninscrit">
             <div class="box-title">
-            <p class="title">Non inscrits</p>
+                <p class="title">Non inscrits</p>
             </div>
             {% for nonInscrit in nonInscrits %}
             <div class="stagiaire">
-                {{ nonInscrit.nom }} {{ nonInscrit.prenom}} 
+                <p>{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</p> 
                 <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':nonInscrit.id}) }}">
                     <i class="fa-solid fa-user-plus"></i>
                 </a>
@@ -55,36 +58,43 @@
         </div>
         {% else %}  
 
+        {# Stagiaires inscrits dans une session #}
+        {# Si il NY A PAS des places disponibles #}
         <div class="stagiaire-inscrit">  
             <div class="box-title">
                 <p class="title">Stagiaires inscrits: </p>
             </div>
             {% for stagiaire in session.stagiaires %}
             <div class="stagiaire">
-                {{ stagiaire.nom }} {{stagiaire.prenom}}
+                <p>{{ stagiaire.nom }} {{stagiaire.prenom}}
                 <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
                     <i class="fa-solid fa-user-minus"></i>
-                </a>
+                </a></p>
             </div>
             {% endfor %}
         </div>
 
+        {# Stagiaires non inscrit dans une session #}
         <div class="stagiaire-noninscrit">
             <div class="box-title">
             <p class="title">Non inscrits:</p>
             </div>
             {% for nonInscrit in nonInscrits %}
                 <div class="stagiaire">
-                    {{ nonInscrit.nom }} {{ nonInscrit.prenom}} 
+                    <p>{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</p> 
                 </div>
             {% endfor %}
         </div>
         {% endif %}
     </div>
     <div class="right-container">
+        {# Modules programmés dans une session #}
         <div class="modules-programme">
             <div class="box-title">
                 <p class="title">Modules Programmés:</p>
+            </div>
+            <div class="header-row">
+                
             </div>
             {% for programme in session.programmes %}
                 <div class="box-nom-module">
@@ -95,6 +105,7 @@
                 </div>
             {% endfor %}
         </div>
+        {# Modules non programmés dans une session #}
         <div class="modules-nonprogramme">
             <div class="box-title">
                 <p class="title">Modules non programmés:</p>
@@ -112,5 +123,5 @@
             {% endfor %}
         </div>
     </div>
-</Div>
+</div>
 {% endblock %}

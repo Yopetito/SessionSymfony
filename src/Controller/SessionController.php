@@ -128,7 +128,7 @@ final class SessionController extends AbstractController
     }
     
     #[Route('/session/add', name: 'add_session')]
-    public function addSession(Session $session = null, SessionRepository $sessionRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function addSession(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
