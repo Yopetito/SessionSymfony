@@ -3,27 +3,26 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
+{# {% if is_granted('ROLE_ADMIN') %} #}
 <h1>WELCOME TO THE DASHBOARD </h1>
 
-{% for session in sessions %}
-    {{ session.nom }}-{{ session.dateDebutFormat }}-{{ session.dateFinFormat }}<br>
-{% endfor %}
-
-<p class="title">Finished Sessions:</p>
-{% for finishedSession in finishedSessions %}
+    
+    <p class="title">Finished Sessions:</p>
+    {% for finishedSession in finishedSessions %}
     {{ finishedSession.nom }}----{{finishedSession.dateDebutFormat}}-{{finishedSession.dateFinFormat}}<br>
-{% endfor %}
-<br>
-<p class="title">Ongoing Sessions</p>
-{% for ongoingSession in ongoingSessions %}
+    {% endfor %}
+    <br>
+    <p class="title">Ongoing Sessions</p>
+    {% for ongoingSession in ongoingSessions %}
     {{ ongoingSession.nom }}----{{ongoingSession.dateDebutFormat}}-{{ongoingSession.dateFinFormat}}<br>
-{% endfor %}
-<br>
-<p class="title">Incoming Sessions</p>
-{% for incomingSession in incomingSessions %}
+    {% endfor %}
+    <br>
+    <p class="title">Incoming Sessions</p>
+    {% for incomingSession in incomingSessions %}
     {{ incomingSession.nom }}----{{incomingSession.dateDebutFormat}}-{{incomingSession.dateFinFormat}}<br>
-{% endfor %}
+    {% endfor %}
 
 
 
+{# {% endif %} #}
 {% endblock %}

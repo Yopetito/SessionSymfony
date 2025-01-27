@@ -4,11 +4,11 @@
 
 {% block body %}
 <h1>SESSIONS</h1>
-<a href="{{ path('add_session') }}"><h2>Ajouter une session</h2></a>
 
 {% for session in sessions %}
-    <a href="{{path('detail_session', {'id':session.id})}}"><h3>{{ session.nom }}</h3></a><br>     
+<a href="{{path('detail_session', {'id':session.id})}}"><h3>{{ session.nom }}</h3></a><br>     
 {% endfor %}
+<a href="{{ path('add_session') }}"><h2>Ajouter une session</h2></a>
 <br>
 
 {% endblock %}
