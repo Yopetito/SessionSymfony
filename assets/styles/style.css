@@ -344,3 +344,53 @@ nav i {
     background-color: var(--outsider);
     transform: scale(1.1);
 }
+
+
+.header-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr; /* Ajuste la largeur relative des colonnes */
+    background-color: var(--cleargreen);
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 2px solid var(--outsider);
+    text-align: center;
+}
+
+.header-cell {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+/* Lignes de données */
+.box-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr auto; /* Auto pour la colonne d'actions */
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px solid var(--cleargreen);
+}
+
+.box-row:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.box-cell {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.box-cell-action {
+    text-align: center;
+}
+
+.box-cell-action a {
+    text-decoration: none;
+    color: red;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.box-cell-action a:hover {
+    transform: scale(1.1);
+    color: darkred;
+}

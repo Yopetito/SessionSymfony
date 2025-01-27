@@ -94,14 +94,22 @@
                 <p class="title">Modules Programmés:</p>
             </div>
             <div class="header-row">
-                
+                <div class="header-cell">Modules</div>
+                <div class="header-cell">Catégories</div>
+                <div class="header-cell">Durée</div>
             </div>
             {% for programme in session.programmes %}
                 <div class="box-nom-module">
-                    {{ programme.module }}- Categorie: {{programme.module.categorie}} - Durée: {{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}
-                    <a href=" {{ path('removeModuleToSession', {'id':session.id, 'programmeId':programme.id}) }}">
-                        <i class="fa-solid fa-file-circle-minus"></i>
-                    </a>
+                    <div class="box-row">
+                        <div class="box-cell">{{ programme.module }}</div>
+                        <div class="box-cell">{{programme.module.categorie}}</div>
+                        <div class="box-cell">{{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}</div>
+                        <div class="box-sell-action">
+                            <a href=" {{ path('removeModuleToSession', {'id':session.id, 'programmeId':programme.id}) }}">
+                                <i class="fa-solid fa-file-circle-minus"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>
