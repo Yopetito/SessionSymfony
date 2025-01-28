@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Informations du stagiaire:</h1>
+    <h2>{{ s.prenom }} {{ s.nom }}</h2>
+
+    <h2>Informations personnelles:</h2>
+    sexe: {{s.sexe}} <br>
+    Date de Naissance: {{s.dateFormat}} <br>
+    ville: {{s.ville}} <br>
+    Email: {{s.email}} <br>
+    Telephone: {{s.telephone}} <br>
+
+    
+    
+    
+    <h2>Sessions: </h2>
+    
+    {% for session in stagiairesession %}
+    <h4>Nom de la session : {{ session.nom }}</h4>
+        <p>
+            Formation: {{ session.formation}}</p>
+            Date de début : {{ session.dateDebut|date('d/m/Y') }} <br>
+            Date de fin : {{ session.dateFin|date('d/m/Y') }} <br>
+        </p>
+            
+        <p>Modules:</p>
+        {% for m in session.programmes %}
+            {{ m.module }}<br>
+        {% endfor %} 
+    {% endfor %}
+    <br>
+
+
+</body>
+</html>

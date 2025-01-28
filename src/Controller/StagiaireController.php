@@ -66,8 +66,4 @@ final class StagiaireController extends AbstractController
 
         return $this->redirectToRoute('app_stagiaire');
     }
-
-
-
-
 }
