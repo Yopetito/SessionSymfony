@@ -76,10 +76,6 @@ nav i {
     color: green;
 }
 
-.fa-file-circle-minus {
-    color:red;
-}
-
 .fa-file-circle-plus {
     color:green;
 }
@@ -121,6 +117,7 @@ nav i {
     overflow: hidden; 
     width: 100%; 
     height: 100%;
+    position: relative;
 }
 
 
@@ -178,13 +175,12 @@ nav i {
 
 .title {
     font-size: var(--titlesize);
-    padding: 15px 0 0 0;
+    margin: 0;
 }
 
 .box-title {
     background-color: var(--outsider);
     border-radius: 8px 8px 0 0;
-    position: sticky;
 }
 
 
@@ -345,15 +341,16 @@ nav i {
     transform: scale(1.1);
 }
 
-
+/* ----------------------------------------- */
 .header-row {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr; /* Ajuste la largeur relative des colonnes */
+    grid-template-columns: 2fr 2fr 1fr 1fr; /* Ajuste la largeur relative des colonnes */
     background-color: var(--cleargreen);
     font-weight: bold;
-    padding: 10px;
     border-bottom: 2px solid var(--outsider);
     text-align: center;
+    position: sticky;
+    top: 0;
 }
 
 .header-cell {
@@ -364,7 +361,7 @@ nav i {
 /* Lignes de données */
 .box-row {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr auto; /* Auto pour la colonne d'actions */
+    grid-template-columns: 2fr 2fr 1fr 1fr; /* Auto pour la colonne d'actions */
     padding: 10px;
     align-items: center;
     border-bottom: 1px solid var(--cleargreen);
@@ -375,22 +372,19 @@ nav i {
 }
 
 .box-cell {
-    padding: 5px 10px;
+    padding: 5px;
     text-align: center;
+    transition: all 0.3s;
 }
 
-.box-cell-action {
-    text-align: center;
-}
-
-.box-cell-action a {
+.box-cell a {
     text-decoration: none;
     color: red;
     font-size: 16px;
     transition: transform 0.2s;
 }
 
-.box-cell-action a:hover {
+.box-cell a:hover {
     transform: scale(1.1);
-    color: darkred;
+    color: rgb(131, 2, 2);
 }
