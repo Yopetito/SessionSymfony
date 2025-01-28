@@ -7,9 +7,10 @@
 
 <div class="liste-formateur">
     {% for formateur in formateurs %}
-        {{ formateur }}<br>
+        {{ formateur }}-{{ formateur.email }} <a href=" {{path('delete_formateur', {'id':formateur.id})}}"><i class="fa-solid fa-trash"></i></a><br>
     {% endfor %}
 </div>
+<h3>Ajouter un formateur</h3>
 <div class="add-formateur">
     {{ form_start(formAddFormateur) }}
         {{ form_row(formAddFormateur.nom) }}

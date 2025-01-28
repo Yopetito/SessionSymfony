@@ -24,9 +24,13 @@ final class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/add', name: 'app_addstagiaire')]
-    public function addStagiaire(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/stagiaire/{id}/edit', name: 'app_editstagiaire')]
+    public function addStagiaire(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {   
-        $stagiaire = new Stagiaire;
+        if(!$stagiaire){
+            $stagiaire = new Stagiaire();
+        }
+        
         $form = $this->createForm(StagiaireType::class, $stagiaire);
 
         $form->handleRequest($request);
@@ -52,6 +56,15 @@ final class StagiaireController extends AbstractController
             return $this->render('stagiaire/detailstagiaire.html.twig', [
             'stagiaire' => $stagiaire
         ]);
+    }
+
+    #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    public function deletestagiaire(Stagiaire $stagiaire, EntityManagerInterface $em)
+    {
+        $em->remove($stagiaire);
+        $em->flush();
+
+        return $this->redirectToRoute('app_stagiaire');
     }
 
 

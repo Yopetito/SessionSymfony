@@ -7,8 +7,8 @@
 <h2>Choisir une categorie pour acceder aux differents modules</h2>
 
 {% for categorie in categories %}
-    <a href="{{ path('app_modules', {'id':categorie.id}) }}">
-        {{ categorie }}
+    <a href="{{ path('app_modules', {'id':categorie.id}) }}">{{ categorie }}
+        <a href=" {{path('delete_categorie', {'id':categorie.id})}}"><i class="fa-solid fa-trash"></i></a>
     </a>
     <br>
 {% endfor %}

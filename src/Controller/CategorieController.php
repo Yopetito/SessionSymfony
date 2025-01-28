@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Module;
 use App\Form\ModuleType;
+use App\Entity\Categorie;
 use App\Repository\ModuleRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -56,6 +57,23 @@ final class CategorieController extends AbstractController
         ]);
     }
 
+    #[Route('/categorie/{id}/delete', name: 'delete_categorie')]
+    public function deleteCategorie(Categorie $categorie, EntityManagerInterface $em)
+    {
+        $em->remove($categorie);
+        $em->flush();
 
+        return $this->redirectToRoute('app_categorie');
+    }
+
+
+    #[Route('/module/{id}/delete', name: 'delete_module')]
+    public function deleteModule(Module $module, EntityManagerInterface $em)
+    {
+        $em->remove($module);
+        $em->flush();
+
+        return $this->redirectToRoute('app_categorie');
+    }
 
 }

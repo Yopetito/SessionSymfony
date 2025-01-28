@@ -34,7 +34,7 @@
             </div>
             {% for stagiaire in session.stagiaires %}
                 <div class="stagiaire">
-                    <p>{{ stagiaire.nom }} {{stagiaire.prenom}}
+                    <p><a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">{{ stagiaire.nom }} {{stagiaire.prenom}}</a>
                     <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
                         <i class="fa-solid fa-user-minus"></i>
                     </a></p>
@@ -49,7 +49,7 @@
             </div>
             {% for nonInscrit in nonInscrits %}
             <div class="stagiaire">
-                <p>{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</p> 
+                <p><a href="{{ path('app_detailstagiaire', {'id':nonInscrit.id}) }}">{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</a></p> 
                 <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':nonInscrit.id}) }}">
                     <i class="fa-solid fa-user-plus"></i>
                 </a>
@@ -66,7 +66,7 @@
             </div>
             {% for stagiaire in session.stagiaires %}
             <div class="stagiaire">
-                <p>{{ stagiaire.nom }} {{stagiaire.prenom}}
+                <p><a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">{{ stagiaire.nom }} {{stagiaire.prenom}}</a>
                 <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
                     <i class="fa-solid fa-user-minus"></i>
                 </a></p>
@@ -81,7 +81,7 @@
             </div>
             {% for nonInscrit in nonInscrits %}
                 <div class="stagiaire">
-                    <p>{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</p> 
+                    <p><a href="{{ path('app_detailstagiaire', {'id':nonInscrit.id}) }}">{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</a></p> 
                 </div>
             {% endfor %}
         </div>
@@ -103,7 +103,7 @@
                 <div class="box-nom-module">
                     <div class="box-row">
                         <div class="box-cell">{{ programme.module }}</div>
-                        <div class="box-cell">{{programme.module.categorie}}</div>
+                        <div class="box-cell"><a href=" {{ path('app_modules', {'id':programme.module.categorie.id})}}">{{programme.module.categorie}}</a></div>
                         <div class="box-cell">{{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}</div>
                         <div class="box-cell">
                             <a href=" {{ path('removeModuleToSession', {'id':session.id, 'programmeId':programme.id}) }}">

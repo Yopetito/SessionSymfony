@@ -11,6 +11,9 @@
     <a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">
          {{ stagiaire }}
     </a>
+    <a href=" {{path('delete_stagiaire', {'id':stagiaire.id})}}"><i class="fa-solid fa-trash"></i></a>
+    
+    <a href=" {{ path('app_editstagiaire', {'id':stagiaire.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
     <br>
 {% endfor %}
 

@@ -3,23 +3,22 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
-{# {% if is_granted('ROLE_ADMIN') %} #}
 <h1>WELCOME TO THE DASHBOARD </h1>
 
     
     <p class="title">Finished Sessions:</p>
     {% for finishedSession in finishedSessions %}
-    {{ finishedSession.nom }}----{{finishedSession.dateDebutFormat}}-{{finishedSession.dateFinFormat}}<br>
+        <a href=" {{ path('detail_session', {'id':finishedSession.id}) }}">{{ finishedSession.nom }}----{{finishedSession.dateDebutFormat}}-{{finishedSession.dateFinFormat}}</a><br>
     {% endfor %}
     <br>
     <p class="title">Ongoing Sessions</p>
     {% for ongoingSession in ongoingSessions %}
-    {{ ongoingSession.nom }}----{{ongoingSession.dateDebutFormat}}-{{ongoingSession.dateFinFormat}}<br>
+        <a href=" {{ path('detail_session', {'id':ongoingSession.id}) }}">{{ ongoingSession.nom }}----{{ongoingSession.dateDebutFormat}}-{{ongoingSession.dateFinFormat}}</a><br>
     {% endfor %}
     <br>
     <p class="title">Incoming Sessions</p>
     {% for incomingSession in incomingSessions %}
-    {{ incomingSession.nom }}----{{incomingSession.dateDebutFormat}}-{{incomingSession.dateFinFormat}}<br>
+    <a href="{{ path('detail_session', {'id':incomingSession.id}) }}">{{ incomingSession.nom }}----{{incomingSession.dateDebutFormat}}-{{incomingSession.dateFinFormat}}</a><br>
     {% endfor %}
 
 
