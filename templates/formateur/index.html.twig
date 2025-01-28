@@ -6,6 +6,10 @@
 <h1>LISTE DES FORMATEURS</h1>
 
 <div class="liste-formateur">
+    {% if formateurs is empty %}
+        <p>Pas de formateurs trouvés.</p>
+    {% else %}
+        
     {% for formateur in formateurs %}
         {{ formateur }}-{{ formateur.email }} <a href=" {{path('delete_formateur', {'id':formateur.id})}}"><i class="fa-solid fa-trash"></i></a><br>
     {% endfor %}
@@ -21,5 +25,7 @@
 
         {{ form_row(formAddFormateur.valider) }}
     {{ form_end(formAddFormateur) }}
+    
+    {% endif %}
 </div>
 {% endblock %}

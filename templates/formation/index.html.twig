@@ -9,13 +9,19 @@
             <p class="title"><span class="hardgreen">FORMA</span><span class="lightgreen">TIONS</span></p>
         </div>
         <div class="formations">
-            {% for formation in formations %}
-                <div class="formation-name">
-                    <a href="{{ path('show_sessions', {'id':formation.id}) }}">
-                        {{ formation }} 
-                    </a>
-                </div>
+            {% if formations is empty %}
+                <p>pas de formations à afficher</p>
+            {% else %}
+                {% for formation in formations %}
+                    <div class="formation-name">
+                        <a href="{{ path('show_sessions', {'id':formation.id}) }}">
+                            {{ formation }} 
+                        </a>
+                    </div>
             {% endfor %}
+                
+            {% endif %}
+                
         </div>
     </div>
 </div>

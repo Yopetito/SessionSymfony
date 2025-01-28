@@ -59,7 +59,7 @@ final class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
-    public function deletestagiaire(Stagiaire $stagiaire, EntityManagerInterface $em)
+    public function deleteStagiaire(Stagiaire $stagiaire, EntityManagerInterface $em)
     {
         $em->remove($stagiaire);
         $em->flush();

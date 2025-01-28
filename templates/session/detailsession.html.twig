@@ -5,132 +5,134 @@
 {% block body %}
 
 <a href="{{ path('show_sessions', {'id':session.formation.id}) }}">GO BACK</a>
-<div class="wrapper">
-    <div class="left-container">
-        
-        {#  Informations de la session #}
-        <div class="session-item">
-            <div class="box-title">
-                <p class="title">{{session.nom}} - Formateur: {{ session.formateur }}<br></p>
-            </div>
-            <div class="info">
-                <div class="leftinfo">
-                    Date de debut: {{session.dateDebutFormat}}<br>
-                    Date de fin: {{session.dateFinFormat}}
+    <div class="wrapper">
+        <div class="left-container">
+            
+            {#  Informations de la session #}
+            <div class="session-item">
+                <div class="box-title">
+                    <p class="title">{{session.nom}} - Formateur: {{ session.formateur }}<br></p>
                 </div>
-                <div class="rightinfo">
-                    Places totales: {{ session.nbPlace }}<br>
-                    Places Restantes: {{ placeRestantes }}
+                <div class="info">
+                    <div class="leftinfo">
+                        Date de debut: {{session.dateDebutFormat}}<br>
+                        Date de fin: {{session.dateFinFormat}}
+                    </div>
+                    <div class="rightinfo">
+                        Places totales: {{ session.nbPlace }}<br>
+                        Places Restantes: {{ placeRestantes }}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        {# Stagiaires inscrits dans une session #}
-        {# Si il y a des places disponibles #}
-        {% if placeRestantes > 0 %}
-        <div class="stagiaire-inscrit">
-            <div class="box-title">
-                <p class="title">Stagiaires inscrits: </p>
+            {# Stagiaires inscrits dans une session #}
+            {# Si il y a des places disponibles #}
+            {% if placeRestantes > 0 %}
+            <div class="stagiaire-inscrit">
+                <div class="box-title">
+                    <p class="title">Stagiaires inscrits: </p>
+                </div>
+                {% for stagiaire in session.stagiaires %}
+                    <div class="stagiaire">
+                        <p><a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">{{ stagiaire.nom }} {{stagiaire.prenom}}</a>
+                        <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
+                            <i class="fa-solid fa-user-minus"></i>
+                        </a></p>
+                    </div>
+                {% endfor %}
             </div>
-            {% for stagiaire in session.stagiaires %}
+
+            {# Stagiaires non inscrit dans une session #}
+            <div class="stagiaire-noninscrit">
+                <div class="box-title">
+                    <p class="title">Non inscrits</p>
+                </div>
+                {% for nonInscrit in nonInscrits %}
+                <div class="stagiaire">
+                    <p><a href="{{ path('app_detailstagiaire', {'id':nonInscrit.id}) }}">{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</a></p> 
+                    <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':nonInscrit.id}) }}">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}  
+
+            {# Stagiaires inscrits dans une session #}
+            {# Si il NY A PAS des places disponibles #}
+            <div class="stagiaire-inscrit">  
+                <div class="box-title">
+                    <p class="title">Stagiaires inscrits: </p>
+                </div>
+                {% for stagiaire in session.stagiaires %}
                 <div class="stagiaire">
                     <p><a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">{{ stagiaire.nom }} {{stagiaire.prenom}}</a>
                     <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
                         <i class="fa-solid fa-user-minus"></i>
                     </a></p>
                 </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
 
-        {# Stagiaires non inscrit dans une session #}
-        <div class="stagiaire-noninscrit">
-            <div class="box-title">
-                <p class="title">Non inscrits</p>
-            </div>
-            {% for nonInscrit in nonInscrits %}
-            <div class="stagiaire">
-                <p><a href="{{ path('app_detailstagiaire', {'id':nonInscrit.id}) }}">{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</a></p> 
-                <a href="{{ path('addStagToSession',{'id':session.id, 'stagiaireId':nonInscrit.id}) }}">
-                    <i class="fa-solid fa-user-plus"></i>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}  
-
-        {# Stagiaires inscrits dans une session #}
-        {# Si il NY A PAS des places disponibles #}
-        <div class="stagiaire-inscrit">  
-            <div class="box-title">
-                <p class="title">Stagiaires inscrits: </p>
-            </div>
-            {% for stagiaire in session.stagiaires %}
-            <div class="stagiaire">
-                <p><a href="{{ path('app_detailstagiaire', {'id':stagiaire.id}) }}">{{ stagiaire.nom }} {{stagiaire.prenom}}</a>
-                <a href="{{  path('removeStagToSession',{'id':session.id, 'stagiaireId':stagiaire.id}) }}">
-                    <i class="fa-solid fa-user-minus"></i>
-                </a></p>
-            </div>
-            {% endfor %}
-        </div>
-
-        {# Stagiaires non inscrit dans une session #}
-        <div class="stagiaire-noninscrit">
-            <div class="box-title">
-            <p class="title">Non inscrits:</p>
-            </div>
-            {% for nonInscrit in nonInscrits %}
-                <div class="stagiaire">
-                    <p><a href="{{ path('app_detailstagiaire', {'id':nonInscrit.id}) }}">{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</a></p> 
+            {# Stagiaires non inscrit dans une session #}
+            <div class="stagiaire-noninscrit">
+                <div class="box-title">
+                <p class="title">Non inscrits:</p>
                 </div>
-            {% endfor %}
+                {% for nonInscrit in nonInscrits %}
+                    <div class="stagiaire">
+                        <p><a href="{{ path('app_detailstagiaire', {'id':nonInscrit.id}) }}">{{ nonInscrit.nom }} {{ nonInscrit.prenom}}</a></p> 
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
-    <div class="right-container">
-        {# Modules programmés dans une session #}
-        <div class="modules-programme">
-            <div class="box-title">
-                <p class="title">Modules Programmés:</p>
-            </div>
-            <div class="header-row">
-                <div class="header-cell">Modules</div>
-                <div class="header-cell">Catégories</div>
-                <div class="header-cell">Durée</div>
-                <div class="header-cell">Action</div>
-            </div>
-            {% for programme in session.programmes %}
-                <div class="box-nom-module">
-                    <div class="box-row">
-                        <div class="box-cell">{{ programme.module }}</div>
-                        <div class="box-cell"><a href=" {{ path('app_modules', {'id':programme.module.categorie.id})}}">{{programme.module.categorie}}</a></div>
-                        <div class="box-cell">{{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}</div>
-                        <div class="box-cell">
-                            <a href=" {{ path('removeModuleToSession', {'id':session.id, 'programmeId':programme.id}) }}">
-                                <i class="fa-solid fa-file-circle-minus"></i>
-                            </a>
+        <div class="right-container">
+            {# Modules programmés dans une session #}
+            <div class="modules-programme">
+                <div class="box-title">
+                    <p class="title">Modules Programmés:</p>
+                </div>
+                <div class="header-row">
+                    <div class="header-cell">Modules</div>
+                    <div class="header-cell">Catégories</div>
+                    <div class="header-cell">Durée</div>
+                    <div class="header-cell">Action</div>
+                </div>
+                {% for programme in session.programmes %}
+                    <div class="box-nom-module">
+                        <div class="box-row">
+                            <div class="box-cell">{{ programme.module }}</div>
+                            <div class="box-cell"><a href=" {{ path('app_modules', {'id':programme.module.categorie.id})}}">{{programme.module.categorie}}</a></div>
+                            <div class="box-cell">{{ programme.nbJour > 1 ? programme.nbJour ~ ' jours' : programme.nbJour ~ ' journée' }}</div>
+                            <div class="box-cell">
+                                <a href=" {{ path('removeModuleToSession', {'id':session.id, 'programmeId':programme.id}) }}">
+                                    <i class="fa-solid fa-file-circle-minus"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-        {# Modules non programmés dans une session #}
-        <div class="modules-nonprogramme">
-            <div class="box-title">
-                <p class="title">Modules non programmés:</p>
+                {% endfor %}
             </div>
-            {% for module in nonProgrammes %}
-                <div class="modules-no-prog">
-                    {{ module.nom }}
-                    <form method="POST" action="{{ path('addModuleToSession', {'id': session.id, 'moduleId': module.id}) }}">
-                        <input type="number" min="0" name="nbJour" placeholder="jours" required>
-                        <button type="submit">
-                            <i class="fa-solid fa-file-circle-plus"></i>
-                        </button>
-                    </form>
+            {# Modules non programmés dans une session #}
+            <div class="modules-nonprogramme">
+                <div class="box-title">
+                    <p class="title">Modules non programmés:</p>
                 </div>
-            {% endfor %}
+                {% for module in nonProgrammes %}
+                    <div class="modules-no-prog">
+                        {{ module.nom }}
+                        <form method="POST" action="{{ path('addModuleToSession', {'id': session.id, 'moduleId': module.id}) }}">
+                            <input type="number" min="0" name="nbJour" placeholder="jours" required>
+                            <button type="submit">
+                                <i class="fa-solid fa-file-circle-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
+
+{# {% endif %} #}
 {% endblock %}

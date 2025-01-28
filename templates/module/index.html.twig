@@ -3,10 +3,15 @@
 {% block title %}Hello ModuleController!{% endblock %}
 
 {% block body %}
+{% if categorie is empty %}
+    "QUEDAL OUAI! TAPE PAS DANS l'URL"
+{% else %}
+    
 
 <h1>Modules dans : {{ categorie }} </h1>
 {% for module in modules %}
     {{module}} <a href=" {{path('delete_module', {'id':module.id})}}"><i class="fa-solid fa-trash"></i></a><br>
 {% endfor %}
+{% endif %}
 {% endblock %}
  

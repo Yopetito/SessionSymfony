@@ -9,11 +9,16 @@
         <p class="title"><span class="hardgreen">SESS</span><span class="lightgreen">IONS</span></p>
     </div>
     <div class="session">
-        {% for session in sessions %}
-        <div class="session-information">
-            <a href="{{path('detail_session', {'id':session.id})}}">{{ session.nom }}</a><br>     
-        </div>
-        {% endfor %}
+        {% if sessions is empty %}
+            <p>Pas de session a affiché dans cette formation</p>
+        {% else %}
+            {% for session in sessions %}
+            <div class="session-information">
+                <a href="{{path('detail_session', {'id':session.id})}}">{{ session.nom }}</a><br>     
+            </div>
+            {% endfor %}
+        {% endif %}
+  
     </div>
     <a class="session-add" href="{{ path('add_session') }}">Ajouter une session</a>
     <br>
