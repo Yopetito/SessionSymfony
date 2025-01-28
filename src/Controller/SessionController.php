@@ -100,17 +100,19 @@ final class SessionController extends AbstractController
         $session = $sessionRepo->find($id);
         $module = $moduleRepo->find($moduleId);
         
-        $nbJour = $request->request->get('nbJour');
-        $programme = new Programme();
-        $programme->setModule($module);
-        $programme->setSession($session);
-        $programme->setNbJour($nbJour);
-        
-         
+        if($request->request->get('nbJour') > 0) {
 
-        $em->persist($programme);
-        $em->flush();
+            $nbJour = $request->request->get('nbJour');
+            $programme = new Programme();
+            $programme->setModule($module);
+            $programme->setSession($session);
+            $programme->setNbJour($nbJour);
+            
+            
 
+            $em->persist($programme);
+            $em->flush();
+        }
         return $this->redirectToRoute('detail_session', ['id' => $id]);
     }
     

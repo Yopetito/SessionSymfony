@@ -5,7 +5,10 @@
 {% block body %}
 <h1>DETAIL STAGIAIRES</h1>
 
-<h3>{{ stagiaire.prenom }} {{ stagiaire.nom }}</h3>
+
+<h3>{{ stagiaire.prenom }} {{ stagiaire.nom }} <a href=" {{ path('factory_pdf', {'id':stagiaire.id}) }}">
+    <i class="fa-solid fa-file-pdf"></i>
+</a></h3>
 
 sexe: {{stagiaire.sexe}} <br>
 Date de Naissance: {{stagiaire.dateFormat}} <br>
@@ -13,7 +16,4 @@ ville: {{stagiaire.ville}} <br>
 Email: {{stagiaire.email}} <br>
 Telephone: {{stagiaire.telephone}} <br>
 
-<a href=" {{ path('factory_pdf', {'id':stagiaire.id}) }}">
-    <i class="fa-solid fa-file-pdf"></i>
-</a>
 {% endblock %}
